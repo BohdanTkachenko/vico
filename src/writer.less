@@ -1,0 +1,171 @@
+@fontColor: #555;
+@activeColor: #06c;
+@borderColor: #ccc;
+@toolbarBackgroundColor: #eee;
+@toolbarItemBorderColor: #ddd;
+@menuColor: #fff;
+@fontColor: #000;
+
+.ReactWriter {
+  border: 1px solid @borderColor;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  color: @fontColor;
+  font-family: Arial;
+
+  .clear {
+    clear: both;
+  }
+
+  .ReactWriterContent {
+    .ReactWriterEditArea {
+      min-height: 100px;
+      outline: 0;
+      padding: 0 12px 12px 12px;
+    }
+  }
+
+  .ReactWriterColorPicker {
+    .ReactWriterColorPickerLine {
+      margin: 2px 0;
+      padding: 0;
+      height: 20px;
+
+      &.ReactWriterColorPickerLineTransparent {
+        border: 1px solid @fontColor;
+        color: @fontColor;
+        cursor: pointer;
+        height: 16px;
+        overflow: hidden;
+
+        &:hover, &.active {
+          border: 1px solid @activeColor;
+          color: @activeColor;
+          outline: 1px solid @activeColor;
+        }
+      }
+
+      .ReactWriterColorPickerColor {
+        background-color: @fontColor;
+        border: 1px solid @fontColor;
+        display: inline-block;
+        height: 16px;
+        margin: 2px;
+        overflow: hidden;
+        outline: 1px solid transparent;
+        width: 16px;
+
+        &:hover, &.active {
+          border: 1px solid @activeColor;
+          outline: 1px solid @activeColor;
+        }
+      }
+    }
+  }
+}
+
+.ReactWriterToolbar {
+  background-color: @toolbarBackgroundColor;
+  border-bottom: 1px solid @borderColor;
+  height: 42px;
+  padding: 0 10px;
+}
+
+.ReactWriterToolbarItem {
+  display: inline-block;
+  margin: 7px 2px;
+  height: 100%;
+  float: left;
+
+  .ReactWriterToolbarDivider {
+    background-color: @toolbarItemBorderColor;
+    height: 28px;
+    width: 1px;
+  }
+
+  .ReactWriterToolbarButton {
+    border: 1px solid transparent;
+    cursor: pointer;
+    min-width: 20px;
+    padding: 5px;
+    text-align: center;
+
+    &:hover, &:active, &.active {
+      color: @activeColor;
+      border: 1px solid @toolbarItemBorderColor;
+    }
+  }
+
+  .ReactWriterToolbarDropdown {
+    select {
+      border: 0;
+      background: none;
+      font-size: 11pt;
+      outline: 0;
+    }
+  }
+
+  .ReactWriterToolbarButtonColorLine {
+    border: 1px solid @borderColor;
+    height: 3px;
+  }
+
+  .ReactWriterToolbarButtonMenu {
+    background-color: @menuColor;
+    border: 1px solid @borderColor;
+    padding: 5px;
+    position: absolute;
+  }
+}
+
+.ReactWriter_Modal {
+  background-color: @toolbarBackgroundColor;
+  border: 1px solid @borderColor;
+  border-radius: 5px;
+  font-family: Arial;
+  font-size: 10pt;
+  margin: 50px auto 0;
+  outline: 0;
+  width: 400px;
+
+  .ReactWriter_Modal_Header {
+    background-color: @borderColor;
+    font-weight: bold;
+    padding: 5px 10px;
+
+    .ReactWriter_Modal_Header_close {
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  }
+
+  .ReactWriter_Modal_Body {
+    padding: 10px 10px 0;
+
+    .ReactWriter_Modal_Input {
+      box-sizing: border-box;
+      font-size: 10pt;
+      height: 32px;
+      padding: 5px;
+      width: 100%;
+    }
+  }
+
+  .ReactWriter_Modal_Footer {
+    text-align: right;
+    padding: 0 20px;
+    height: 42px;
+
+    .ReactWriterToolbarItem {
+      float: right;
+
+      .ReactWriterToolbarButton {
+        border: 1px solid @toolbarItemBorderColor;
+
+        &:hover {
+          border-color: @activeColor;
+        }
+      }
+    }
+  }
+}

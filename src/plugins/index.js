@@ -1,0 +1,16 @@
+export { BoldPlugin } from './BoldPlugin';
+export { FontColorPlugin } from './FontColorPlugin';
+export { FontHighlightColorPlugin } from './FontHighlightColorPlugin';
+export { FontSizePlugin } from './FontSizePlugin';
+export { InsertImagePlugin } from './InsertImagePlugin';
+export { ItalicPlugin } from './ItalicPlugin';
+export { JustifyCenterPlugin } from './JustifyCenterPlugin';
+export { JustifyLeftPlugin } from './JustifyLeftPlugin';
+export { JustifyRightPlugin } from './JustifyRightPlugin';
+export { LinkPlugin } from './LinkPlugin';
+export { OrderedListPlugin } from './OrderedListPlugin';
+export { StrikethroughPlugin } from './StrikethroughPlugin';
+export { SubscriptPlugin } from './SubscriptPlugin';
+export { SuperscriptPlugin } from './SuperscriptPlugin';
+export { UnderlinePlugin } from './UnderlinePlugin';
+export { UnorderedListPlugin } from './UnorderedListPlugin';
