@@ -1,6 +1,6 @@
 {
-  "name": "react-writer",
-  "version": "0.0.1",
+  "name": "vico",
+  "version": "0.0.6",
   "description": "WYSIWYG editor for ReactJS",
   "main": "dist/writer.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BohdanTkachenko/react-writer.git"
+    "url": "git+https://github.com/BohdanTkachenko/vico.git"
   },
   "keywords": [
     "react",
@@ -26,9 +26,9 @@
   "author": "Bohdan Tkachenko <bohdan@tkachenko.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BohdanTkachenko/react-writer/issues"
+    "url": "https://github.com/BohdanTkachenko/vico/issues"
   },
-  "homepage": "https://github.com/BohdanTkachenko/react-writer#readme",
+  "homepage": "https://github.com/BohdanTkachenko/vico#readme",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-eslint": "^6.0.4",
