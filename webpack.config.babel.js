@@ -1,13 +1,9 @@
+import nodeExternals from 'webpack-node-externals';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import packageJSON from './package.json';
-
-const externals = {};
-for (const name of Object.keys(packageJSON.dependencies)) {
-  externals[name] = true;
-}
 
 export default {
-  target: 'web',
+  target: 'node',
+  externals: [nodeExternals()],
   entry: {
     writer: './src/lib.js',
   },
@@ -18,7 +14,6 @@ export default {
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
-  externals,
   module: {
     loaders: [
       {

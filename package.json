@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-lib": "webpack --config webpack.config.babel.js",
     "build-demo": "webpack --config webpack.demo.config.babel.js",
-    "build": "concurrently --kill-others \"npm run build-lib\" \"npm run build-demo\"",
+    "build": "npm run build-lib && npm run build-demo",
     "watch-lib": "webpack --config webpack.config.babel.js --watch",
     "watch-demo": "webpack --config webpack.demo.config.babel.js --watch",
     "dev": "concurrently --kill-others \"npm run watch-lib\" \"npm run watch-demo\"",
@@ -29,12 +29,15 @@
     "url": "https://github.com/BohdanTkachenko/vico/issues"
   },
   "homepage": "https://github.com/BohdanTkachenko/vico#readme",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.1.0"
+  },
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "eslint": "^2.11.1",
@@ -43,16 +46,17 @@
     "eslint-plugin-jsx-a11y": "^1.3.0",
     "eslint-plugin-react": "^5.1.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "font-awesome": "^4.6.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-modal": "^1.3.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-node-externals": "^1.2.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "font-awesome": "^4.6.3",
-    "react": "^15.1.0",
-    "react-modal": "^1.3.0"
+    "classnames": "^2.2.5"
   }
 }

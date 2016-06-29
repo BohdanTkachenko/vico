@@ -46,7 +46,7 @@ export const getSelection = (rootEl) => {
     selection = document.selection.createRange();
   }
 
-  if (!selection || !hasParentNode(selection.startContainer, rootEl)) {
+  if ((!selection || !hasParentNode(selection.startContainer, rootEl)) && rootEl.firstChild) {
     selection = document.createRange();
     selection.setStartBefore(rootEl.firstChild);
     selection.setEndAfter(rootEl.firstChild);
