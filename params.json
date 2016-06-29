@@ -1,0 +1,6 @@
+{
+  "name": "Vico.js",
+  "tagline": "JavaScript WYSIWYG editor built with ReactJS",
+  "body": "# Installation\r\n\r\nPlease see `demo/` folder for example usage. More documentation is coming soon.\r\n\r\n![screenshot](https://github.com/BohdanTkachenko/vico/raw/master/screenshot.png)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
