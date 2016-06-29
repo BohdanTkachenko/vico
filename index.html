@@ -28,12 +28,43 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>
+          <p><img src="https://github.com/BohdanTkachenko/vico/raw/master/screenshot.png" alt="screenshot"></p>
+
+<h1>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
 
-<p>Please see <code>demo/</code> folder for example usage. More documentation is coming soon.</p>
+<pre><code>npm install --save vico
+</code></pre>
 
-<p><img src="https://github.com/BohdanTkachenko/vico/raw/master/screenshot.png" alt="screenshot"></p>
+<h1>
+<a id="usage-with-react" class="anchor" href="#usage-with-react" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage with React</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">React</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> <span class="pl-smi">Vico</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vico<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">export</span> <span class="pl-k">class</span> <span class="pl-en">Test</span> <span class="pl-k">extends</span> <span class="pl-e">React</span>.<span class="pl-smi">Component</span> {
+  state <span class="pl-k">=</span> {
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,
+  };
+
+  <span class="pl-en">onChange</span>(<span class="pl-smi">value</span>) {
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>({ content<span class="pl-k">:</span> value });
+  }
+
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>Vico value<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-c1">content</span>} onChange<span class="pl-k">=</span>{<span class="pl-k">::</span><span class="pl-v">this</span>.<span class="pl-smi">onContentChange</span>} <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span>textarea<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-c1">content</span>}<span class="pl-k">&lt;</span><span class="pl-k">/</span>textarea<span class="pl-k">&gt;</span>
+      <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+    );
+  }
+}</pre></div>
+
+<h1>
+<a id="usage-without-react" class="anchor" href="#usage-without-react" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage without React</h1>
+
+<p>See <code>demo/</code> folder for example of usage in non-React project.</p>
         </section>
 
         <aside id="sidebar">

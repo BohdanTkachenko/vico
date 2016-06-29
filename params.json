@@ -1,6 +1,6 @@
 {
   "name": "Vico.js",
   "tagline": "JavaScript WYSIWYG editor built with ReactJS",
-  "body": "# Installation\r\n\r\nPlease see `demo/` folder for example usage. More documentation is coming soon.\r\n\r\n![screenshot](https://github.com/BohdanTkachenko/vico/raw/master/screenshot.png)\r\n",
+  "body": "![screenshot](https://github.com/BohdanTkachenko/vico/raw/master/screenshot.png)\r\n\r\n# Installation\r\n```\r\nnpm install --save vico\r\n```\r\n\r\n# Usage with React\r\n```js\r\nimport React from 'react';\r\nimport Vico from 'vico';\r\n\r\nexport class Test extends React.Component {\r\n  state = {\r\n    content: '',\r\n  };\r\n\r\n  onChange(value) {\r\n    this.setState({ content: value });\r\n  }\r\n\r\n  render() {\r\n    return (\r\n      <div>\r\n        <Vico value={this.state.content} onChange={::this.onContentChange} />\r\n        <textarea>{this.state.content}</textarea>\r\n      </div>\r\n    );\r\n  }\r\n}\r\n```\r\n\r\n# Usage without React\r\nSee `demo/` folder for example of usage in non-React project.\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
