@@ -60,13 +60,13 @@ export class LinkPlugin extends React.Component {
         {...this.props}
       >
         <Modal
-          className="ReactWriter_Modal"
+          className="Vico_Modal"
           isOpen={this.state.modalOpened}
           onRequestClose={::this.closeModal}
         >
-          <div className="ReactWriter_Modal_Header">
+          <div className="Vico_Modal_Header">
             <span
-              className="ReactWriter_Modal_Header_close"
+              className="Vico_Modal_Header_close"
               onClick={::this.closeModal}
             >
               <i className="fa fa-times"></i>
@@ -75,10 +75,10 @@ export class LinkPlugin extends React.Component {
             Insert URL
           </div>
 
-          <div className="ReactWriter_Modal_Body">
+          <div className="Vico_Modal_Body">
             <b>URL:</b>
             <input
-              className="ReactWriter_Modal_Input"
+              className="Vico_Modal_Input"
               type="text"
               value={this.state.url}
               onChange={::this.onUrlChange}
@@ -92,7 +92,7 @@ export class LinkPlugin extends React.Component {
             </div>
           </div>
 
-          <div className="ReactWriter_Modal_Footer">
+          <div className="Vico_Modal_Footer">
             <ToolbarButton
               icon="check"
               onClick={::this.link}

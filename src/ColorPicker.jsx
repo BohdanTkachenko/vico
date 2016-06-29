@@ -100,12 +100,12 @@ export class ColorPicker extends React.Component {
     const { value, canBeTransparent } = this.props;
 
     return (
-      <div className="ReactWriterColorPicker">
+      <div className="VicoColorPicker">
         {canBeTransparent && (
           <div
             className={classNames({
-              ReactWriterColorPickerLine: true,
-              ReactWriterColorPickerLineTransparent: true,
+              VicoColorPickerLine: true,
+              VicoColorPickerLineTransparent: true,
               active: !value,
             })}
             onClick={::this.setColor(null)}
@@ -120,7 +120,7 @@ export class ColorPicker extends React.Component {
         {colors.map((line, idx) => (
           <div
             key={idx}
-            className="ReactWriterColorPickerLine"
+            className="VicoColorPickerLine"
           >
             {line.map(color => {
               const active = this.prepareColor(color) === this.prepareColor(value);
@@ -128,7 +128,7 @@ export class ColorPicker extends React.Component {
               return (
                 <div
                   key={color}
-                  className={classNames({ ReactWriterColorPickerColor: true, active })}
+                  className={classNames({ VicoColorPickerColor: true, active })}
                   style={{ backgroundColor: color }}
                   onClick={::this.setColor(color)}
                 >

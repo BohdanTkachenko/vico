@@ -6,7 +6,7 @@
 @menuColor: #fff;
 @fontColor: #000;
 
-.ReactWriter {
+.Vico {
   border: 1px solid @borderColor;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
@@ -17,21 +17,21 @@
     clear: both;
   }
 
-  .ReactWriterContent {
-    .ReactWriterEditArea {
+  .VicoContent {
+    .VicoEditArea {
       min-height: 100px;
       outline: 0;
       padding: 0 12px 12px 12px;
     }
   }
 
-  .ReactWriterColorPicker {
-    .ReactWriterColorPickerLine {
+  .VicoColorPicker {
+    .VicoColorPickerLine {
       margin: 2px 0;
       padding: 0;
       height: 20px;
 
-      &.ReactWriterColorPickerLineTransparent {
+      &.VicoColorPickerLineTransparent {
         border: 1px solid @fontColor;
         color: @fontColor;
         cursor: pointer;
@@ -45,7 +45,7 @@
         }
       }
 
-      .ReactWriterColorPickerColor {
+      .VicoColorPickerColor {
         background-color: @fontColor;
         border: 1px solid @fontColor;
         display: inline-block;
@@ -64,26 +64,26 @@
   }
 }
 
-.ReactWriterToolbar {
+.VicoToolbar {
   background-color: @toolbarBackgroundColor;
   border-bottom: 1px solid @borderColor;
   height: 42px;
   padding: 0 10px;
 }
 
-.ReactWriterToolbarItem {
+.VicoToolbarItem {
   display: inline-block;
   margin: 7px 2px;
   height: 100%;
   float: left;
 
-  .ReactWriterToolbarDivider {
+  .VicoToolbarDivider {
     background-color: @toolbarItemBorderColor;
     height: 28px;
     width: 1px;
   }
 
-  .ReactWriterToolbarButton {
+  .VicoToolbarButton {
     border: 1px solid transparent;
     cursor: pointer;
     min-width: 20px;
@@ -96,7 +96,7 @@
     }
   }
 
-  .ReactWriterToolbarDropdown {
+  .VicoToolbarDropdown {
     select {
       border: 0;
       background: none;
@@ -105,12 +105,12 @@
     }
   }
 
-  .ReactWriterToolbarButtonColorLine {
+  .VicoToolbarButtonColorLine {
     border: 1px solid @borderColor;
     height: 3px;
   }
 
-  .ReactWriterToolbarButtonMenu {
+  .VicoToolbarButtonMenu {
     background-color: @menuColor;
     border: 1px solid @borderColor;
     padding: 5px;
@@ -118,7 +118,7 @@
   }
 }
 
-.ReactWriter_Modal {
+.Vico_Modal {
   background-color: @toolbarBackgroundColor;
   border: 1px solid @borderColor;
   border-radius: 5px;
@@ -128,21 +128,21 @@
   outline: 0;
   width: 400px;
 
-  .ReactWriter_Modal_Header {
+  .Vico_Modal_Header {
     background-color: @borderColor;
     font-weight: bold;
     padding: 5px 10px;
 
-    .ReactWriter_Modal_Header_close {
+    .Vico_Modal_Header_close {
       cursor: pointer;
       margin-right: 10px;
     }
   }
 
-  .ReactWriter_Modal_Body {
+  .Vico_Modal_Body {
     padding: 10px 10px 0;
 
-    .ReactWriter_Modal_Input {
+    .Vico_Modal_Input {
       box-sizing: border-box;
       font-size: 10pt;
       height: 32px;
@@ -151,15 +151,15 @@
     }
   }
 
-  .ReactWriter_Modal_Footer {
+  .Vico_Modal_Footer {
     text-align: right;
     padding: 0 20px;
     height: 42px;
 
-    .ReactWriterToolbarItem {
+    .VicoToolbarItem {
       float: right;
 
-      .ReactWriterToolbarButton {
+      .VicoToolbarButton {
         border: 1px solid @toolbarItemBorderColor;
 
         &:hover {

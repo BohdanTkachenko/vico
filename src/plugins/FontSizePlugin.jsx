@@ -29,7 +29,7 @@ export class FontSizePlugin extends React.Component {
 
     return (
       <ToolbarButton
-        className="ReactWriterToolbarDropdown"
+        className="VicoToolbarDropdown"
         {...this.props}
       >
         <select

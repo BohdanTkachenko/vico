@@ -5,12 +5,12 @@ export default {
   target: 'node',
   externals: [nodeExternals()],
   entry: {
-    writer: './src/lib.js',
+    vico: './src/lib.js',
   },
   output: {
     path: './dist',
     filename: '[name].js',
-    library: 'ReactWriter',
+    library: 'Vico',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },

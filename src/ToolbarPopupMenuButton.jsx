@@ -32,7 +32,7 @@ export class ToolbarPopupMenuButton extends React.Component {
       >
         {this.props.children}
         {this.state.show && (
-          <div className="ReactWriterToolbarButtonMenu">
+          <div className="VicoToolbarButtonMenu">
             {this.props.menu}
           </div>
         )}

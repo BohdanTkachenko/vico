@@ -33,7 +33,7 @@ export class FontHighlightColorPlugin extends React.Component {
         {...this.props}
       >
         <div
-          className="ReactWriterToolbarButtonColorLine"
+          className="VicoToolbarButtonColorLine"
           style={{ backgroundColor: value }}
         ></div>
       </ToolbarPopupMenuButton>

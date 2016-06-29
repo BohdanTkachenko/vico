@@ -48,9 +48,9 @@ export class ToolbarButton extends React.Component {
     const activeClassName = match(selectors, nodes) ? 'active' : undefined;
 
     return (
-      <div className="ReactWriterToolbarItem">
+      <div className="VicoToolbarItem">
         <div
-          className={classNames(['ReactWriterToolbarButton', className, activeClassName])}
+          className={classNames(['VicoToolbarButton', className, activeClassName])}
           onClick={::this.onClick}
           style={this.props.style}
         >

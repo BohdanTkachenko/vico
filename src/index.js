@@ -1,4 +1,4 @@
-export { Writer } from './Writer';
+export { Vico } from './Vico';
 export { ColorPicker } from './ColorPicker';
 export { ToolbarButton } from './ToolbarButton';
 export { ToolbarPopupMenuButton } from './ToolbarPopupMenuButton';

@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactWriter from '../dist/writer';
+import Vico from '../dist/vico';
 
-const value = `
+let value = `
 <p>
   <strong>WYSIWYG</strong> (<a href="https://en.wikipedia.org/wiki/Help:IPA_for_English">/ˈwɪziwɪɡ/</a>
   <a href="https://en.wikipedia.org/wiki/Wikipedia:Pronunciation_respelling_key">wiz-ee-wig</a>)
   is an <a href="https://en.wikipedia.org/wiki/Acronym">acronym</a> for "<b>what you see is what
   you get</b>". In <a href="https://en.wikipedia.org/wiki/Computing">computing</a>, a <u>WYSIWYG</u>
-  editor is a system in which content (text and graphics) onscreen during editing appears in a
-  form <i>closely corresponding</i> to its appearance when printed or displayed as a finished
-  product, which might be a printed document, web page, or slide presentation. <s>Test.</s>
+  editor is a system in which <s>content</s> (text and graphics) onscreen during editing appears
+  in a form <i>closely corresponding</i> to its appearance when printed or displayed as a finished
+  product, which might be a printed document, web page, or slide presentation.
 </p>
 <p>
   Typically, the design goals of a WYSIWYG application may include the following:
@@ -26,6 +26,15 @@ const value = `
 </p>
 `;
 
+const textarea = document.querySelector('#content');
+textarea.innerHTML = value;
+
 ReactDOM.render((
-  <ReactWriter value={value} />
+  <Vico
+    value={value}
+    onChange={(newValue) => {
+      value = newValue;
+      textarea.innerHTML = value;
+    }}
+  />
 ), document.getElementById('main'));

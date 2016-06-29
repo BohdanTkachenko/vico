@@ -4,8 +4,11 @@ import { FullPreset } from './presets';
 import { match } from './util/matcher';
 import { getSelection, setSelection } from './util/selection';
 
-export class Writer extends React.Component {
+export class Vico extends React.Component {
   static propTypes = {
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
     toolbar: React.PropTypes.array,
     value: React.PropTypes.string,
     disabled: React.PropTypes.bool,
@@ -16,20 +19,22 @@ export class Writer extends React.Component {
     nodes: [],
   };
 
-  onBlur() {
-    // e.preventDefault();
-    // e.stopPropagation();
-    // console.log('onBlur', e);
-    // console.log(window.getSelection());
-    // return false;
-
+  onBlur(e) {
     this.saveSelection();
+
+    const { onBlur } = this.props;
+    if (typeof onBlur === 'function') {
+      this.props.onBlur(e);
+    }
   }
 
-  onChange() {
+  onChange(e, a, b, c) {
     this.saveSelection();
 
-    // console.log('onChange', e);
+    const { onChange } = this.props;
+    if (typeof onChange === 'function') {
+      this.props.onChange(this.refs.content.innerHTML);
+    }
   }
 
   onKeyDown(e) {
@@ -101,11 +106,11 @@ export class Writer extends React.Component {
     }
 
     return (
-      <div className="ReactWriter">
+      <div className="Vico">
         {toolbar.map((items, toolbarId) => (
           <div
             key={toolbarId}
-            className="ReactWriterToolbar"
+            className="VicoToolbar"
           >
             {items.map((item, toolbarItemId) => {
               if (item === '-') {
@@ -125,14 +130,15 @@ export class Writer extends React.Component {
 
         <div className="clear"></div>
 
-        <div className="ReactWriterContent">
+        <div className="VicoContent">
           <div
             ref="content"
-            className="ReactWriterEditArea"
+            className="VicoEditArea"
             contentEditable={!disabled}
             dangerouslySetInnerHTML={{ __html: value }}
             onInput={::this.onChange}
             onBlur={::this.onBlur}
+            onFocus={this.props.onFocus}
             onKeyDown={::this.onKeyDown}
             onKeyUp={::this.onKeyUp}
             onMouseDown={::this.onMouseDown}
