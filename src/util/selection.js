@@ -46,11 +46,13 @@ export const getSelection = (rootEl) => {
     selection = document.selection.createRange();
   }
 
-  if ((!selection || !hasParentNode(selection.startContainer, rootEl)) && rootEl.firstChild) {
-    selection = document.createRange();
-    selection.setStartBefore(rootEl.firstChild);
-    selection.setEndAfter(rootEl.firstChild);
-    setSelection(selection);
+  if ((!selection || !hasParentNode(selection.startContainer, rootEl))) {
+    if (rootEl && rootEl.firstChild) {
+      selection = document.createRange();
+      selection.setStartBefore(rootEl.firstChild);
+      selection.setEndAfter(rootEl.firstChild);
+      setSelection(selection);
+    }
   }
 
   const nodes = getSelectedNodes(selection, rootEl);

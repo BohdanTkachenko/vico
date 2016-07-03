@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Vico from '../dist/vico';
 
-let value = `
+const VALUE = `
 <p>
   <strong>WYSIWYG</strong> (<a href="https://en.wikipedia.org/wiki/Help:IPA_for_English">/ˈwɪziwɪɡ/</a>
   <a href="https://en.wikipedia.org/wiki/Wikipedia:Pronunciation_respelling_key">wiz-ee-wig</a>)
@@ -26,15 +26,43 @@ let value = `
 </p>
 `;
 
-const textarea = document.querySelector('#content');
-textarea.innerHTML = value;
+class Test extends React.Component {
+  state = {
+    value: VALUE,
+  }
+
+  onChange(value) {
+    this.setState({ value });
+  }
+
+  render() {
+    return (
+      <div>
+        <Vico
+          value={this.state.value}
+          onChange={::this.onChange}
+        />
+
+        <Vico
+          value={this.state.value}
+          onChange={::this.onChange}
+        />
+
+        <h5>Result:</h5>
+
+        <textarea
+          value={this.state.value}
+          onChange={(e) => this.onChange(e.target.value)}
+          style={{
+            width: '100%',
+            height: 300,
+          }}
+        ></textarea>
+      </div>
+    );
+  }
+}
 
 ReactDOM.render((
-  <Vico
-    value={value}
-    onChange={(newValue) => {
-      value = newValue;
-      textarea.innerHTML = value;
-    }}
-  />
+  <Test />
 ), document.getElementById('main'));

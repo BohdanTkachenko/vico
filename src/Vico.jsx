@@ -28,7 +28,7 @@ export class Vico extends React.Component {
     }
   }
 
-  onChange(e, a, b, c) {
+  onChange() {
     this.saveSelection();
 
     const { onChange } = this.props;
