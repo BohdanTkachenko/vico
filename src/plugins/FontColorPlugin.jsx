@@ -3,12 +3,11 @@ import { ToolbarPopupMenuButton, ColorPicker } from '../';
 
 export class FontColorPlugin extends React.Component {
   static propTypes = {
-    execCommand: React.PropTypes.func.isRequired,
     nodes: React.PropTypes.array.isRequired,
   };
 
   setColor(color) {
-    this.props.execCommand('foreColor', color);
+    throw new Error(`Set color ${color} not implemented`);
   }
 
   render() {

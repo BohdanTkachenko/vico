@@ -3,9 +3,9 @@ import { ToolbarButton } from '../';
 
 export const UnorderedListPlugin = (props) => (
   <ToolbarButton
-    command="insertUnorderedList"
+    blockType="unordered-list-item"
     icon="list-ul"
-    selectors={['ul']}
+    selector="unordered-list-item"
     {...props}
   />
 );

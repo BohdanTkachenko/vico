@@ -3,9 +3,9 @@ import { ToolbarButton } from '../';
 
 export const OrderedListPlugin = (props) => (
   <ToolbarButton
-    command="insertOrderedList"
+    blockType="ordered-list-item"
     icon="list-ol"
-    selectors={['ol']}
+    selector="ordered-list-item"
     {...props}
   />
 );

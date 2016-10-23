@@ -3,9 +3,9 @@ import { ToolbarButton } from '../';
 
 export const UnderlinePlugin = (props) => (
   <ToolbarButton
-    command="underline"
+    inlineStyle="underline"
+    selector="underline"
     icon="underline"
-    selectors={['u']}
     {...props}
   />
 );

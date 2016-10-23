@@ -3,8 +3,8 @@ import { ToolbarButton } from '../';
 
 export const SuperscriptPlugin = (props) => (
   <ToolbarButton
-    command="superscript"
-    selectors={[{ tags: ['superscript'] }]}
+    inlineStyle="superscript"
+    selector="superscript"
     icon="superscript"
     {...props}
   />

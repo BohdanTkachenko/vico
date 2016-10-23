@@ -3,9 +3,9 @@ import { ToolbarButton } from '../';
 
 export const ItalicPlugin = (props) => (
   <ToolbarButton
-    command="italic"
+    inlineStyle="italic"
+    selector="italic"
     icon="italic"
-    selectors={[{ tags: ['i', 'em'] }]}
     {...props}
   />
 );

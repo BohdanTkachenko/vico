@@ -3,9 +3,9 @@ import { ToolbarButton } from '../';
 
 export const StrikethroughPlugin = (props) => (
   <ToolbarButton
-    command="strikethrough"
+    inlineStyle="strikethrough"
+    selector="strikethrough"
     icon="strikethrough"
-    selectors={['s']}
     {...props}
   />
 );

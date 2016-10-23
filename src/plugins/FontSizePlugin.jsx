@@ -5,13 +5,11 @@ const FONT_SIZES = [1, 2, 3, 4, 5, 6, 7];
 
 export class FontSizePlugin extends React.Component {
   static propTypes = {
-    execCommand: React.PropTypes.func.isRequired,
     nodes: React.PropTypes.array.isRequired,
   };
 
   onChange(e) {
-    const { execCommand } = this.props;
-    execCommand('fontSize', e.target.value);
+    throw new Error(`Set fontSize ${e.target.value} not implemented`);
   }
 
   render() {

@@ -1,94 +1,131 @@
 import React from 'react';
+import {
+  Editor,
+  EditorState,
+  // ContentState,
+  // convertToRaw,
+  RichUtils,
+  CompositeDecorator,
+} from 'draft-js';
+// import { processHTML } from 'draft-js/lib/DraftPasteProcessor';
+import { stateToHTML } from 'draft-js-export-html';
+import { stateFromHTML } from 'draft-js-import-html';
 import { ToolbarDelimeter } from './index';
+import { Link } from './components';
 import { FullPreset } from './presets';
-import { match } from './util/matcher';
-import { getSelection, setSelection } from './util/selection';
+// import { draftRawToHtml } from './util/draftRawToHtml';
+import { findEntities } from './util/findEntities';
+
+const decorator = new CompositeDecorator([
+  {
+    strategy: findEntities.bind(null, 'LINK'),
+    component: Link,
+  },
+]);
+
+const createEditorStateFromHtml = (html = '') => {
+  if (typeof html !== 'string') {
+    html = '';
+  }
+
+  return EditorState.createWithContent(stateFromHTML(html, {
+    elementStyles: {
+      u: 'UNDERLINE',
+      s: 'STRIKETHROUGH',
+      sub: 'SUBSCRIPT',
+      sup: 'SUPERSCRIPT',
+    },
+  }), decorator);
+
+  // return EditorState.createWithContent(
+  //   ContentState.createFromBlockArray(processHTML(html)),
+  //   decorator
+  // );
+};
 
 export class Vico extends React.Component {
   static propTypes = {
     onChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
     toolbar: React.PropTypes.array,
     value: React.PropTypes.string,
     disabled: React.PropTypes.bool,
   };
 
   state = {
-    selection: null,
+    editorState: createEditorStateFromHtml(this.props.value),
+    value: this.props.value,
     nodes: [],
   };
 
-  onBlur(e) {
-    this.saveSelection();
+  componentWillMount() {
+    const { onChange, value } = this.props;
+    const currentValue = this.getValue(this.state.editorState);
 
-    const { onBlur } = this.props;
-    if (typeof onBlur === 'function') {
-      this.props.onBlur(e);
+    if (currentValue !== value) {
+      // onChange(currentValue);
     }
   }
 
-  onChange() {
-    this.saveSelection();
-
-    const { onChange } = this.props;
-    if (typeof onChange === 'function') {
-      this.props.onChange(this.refs.content.innerHTML);
-    }
-  }
-
-  onKeyDown(e) {
-    this.saveSelection();
-
-    if (match(['li'], this.state.nodes)) {
-      return;
-    }
-
-    if (e.keyCode !== 13) {
-      return;
-    }
-
-    document.execCommand('formatBlock', false, 'p');
-  }
-
-  onKeyUp() {
-    this.saveSelection();
-  }
-
-  onMouseDown() {
-    this.saveSelection();
-  }
-
-  onMouseUp() {
-    this.saveSelection();
-  }
-
-  saveSelection(callback) {
-    const { selection, nodes } = getSelection(this.refs.content);
-    this.setState({ selection, nodes }, callback);
-  }
-
-  restoreSelection() {
-    if (!this.state.selection) {
-      this.saveSelection(() => {
-        this.restoreSelection();
+  componentWillReceiveProps(nextProps) {
+    if (this.state.value !== nextProps.value) {
+      this.setState({
+        editorState: createEditorStateFromHtml(nextProps.value),
+        value: nextProps.value,
       });
-
-      return;
     }
-
-    setSelection(this.state.selection);
   }
 
-  execCommand(name, arg) {
-    this.restoreSelection();
-    this.refs.content.focus();
-    document.execCommand(name, false, arg);
+  onChange(editorState) {
+    let value = this.state.value;
+
+    const previousContent = this.state.editorState.getCurrentContent();
+    const changed = previousContent !== editorState.getCurrentContent();
+
+    if (changed) {
+      value = this.getValue(editorState);
+    }
+
+    this.setState({ editorState, value }, () => {
+      if (changed) {
+        // this.props.onChange(value);
+      }
+    });
+  }
+
+  getValue(editorState = this.state.editorState) {
+    // const raw = convertToRaw(editorState.getCurrentContent());
+    return stateToHTML(editorState.getCurrentContent());
+    // return draftRawToHtml(raw);
+  }
+
+  handleKeyCommand(command) {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+
+    if (newState) {
+      // this.onChange(newState);
+      return true;
+    }
+
+    return false;
   }
 
   render() {
-    const { value, disabled } = this.props;
+    const { editorState } = this.state;
+    // const { disabled } = this.props;
     let { toolbar } = this.props;
+
+    const selection = editorState.getSelection();
+    const blockType = editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getStartKey())
+      .getType();
+
+    const currentStyle = editorState.getCurrentInlineStyle();
+
+    window.es = editorState;
+
+    console.log(blockType);
+    console.log(currentStyle.toObject());
 
     if (!toolbar) {
       toolbar = FullPreset;
@@ -119,9 +156,8 @@ export class Vico extends React.Component {
 
               return React.createElement(item, {
                 key: toolbarItemId,
-                execCommand: ::this.execCommand,
-                restoreSelection: ::this.restoreSelection,
-                selection: this.state.selection,
+                editorState,
+                onChange: ::this.onChange,
                 nodes: this.state.nodes,
               });
             })}
@@ -131,19 +167,21 @@ export class Vico extends React.Component {
         <div className="clear"></div>
 
         <div className="VicoContent">
-          <div
-            ref="content"
-            className="VicoEditArea"
-            contentEditable={!disabled}
-            dangerouslySetInnerHTML={{ __html: value }}
-            onInput={::this.onChange}
-            onBlur={::this.onBlur}
-            onFocus={this.props.onFocus}
-            onKeyDown={::this.onKeyDown}
-            onKeyUp={::this.onKeyUp}
-            onMouseDown={::this.onMouseDown}
-            onMouseUp={::this.onMouseUp}
-          ></div>
+          <Editor
+            editorState={editorState}
+            onChange={::this.onChange}
+            handleKeyCommand={::this.handleKeyCommand}
+            customStyleMap={{
+              SUBSCRIPT: {
+                fontSize: '.83em',
+                verticalAlign: 'sub',
+              },
+              SUPERSCRIPT: {
+                fontSize: '.83em',
+                verticalAlign: 'super',
+              },
+            }}
+          />
         </div>
       </div>
     );

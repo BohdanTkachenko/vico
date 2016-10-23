@@ -3,7 +3,6 @@ import { ToolbarButton } from './';
 
 export class ToolbarPopupMenuButton extends React.Component {
   static propTypes = {
-    restoreSelection: React.PropTypes.func.isRequired,
     menu: React.PropTypes.node.isRequired,
     children: React.PropTypes.node,
     onClick: React.PropTypes.func,
@@ -14,9 +13,8 @@ export class ToolbarPopupMenuButton extends React.Component {
   };
 
   onClick(e) {
-    const { restoreSelection, onClick } = this.props;
+    const { onClick } = this.props;
 
-    restoreSelection();
     this.setState({ show: !this.state.show });
 
     if (typeof onClick === 'function') {

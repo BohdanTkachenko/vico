@@ -3,8 +3,8 @@ import { ToolbarButton } from '../';
 
 export const SubscriptPlugin = (props) => (
   <ToolbarButton
-    command="subscript"
-    selectors={[{ tags: ['subscript'] }]}
+    inlineStyle="subscript"
+    selector="subscript"
     icon="subscript"
     {...props}
   />

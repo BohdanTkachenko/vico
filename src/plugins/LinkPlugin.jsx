@@ -1,12 +1,14 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { RichUtils, Entity } from 'draft-js';
 import { find } from '../util/matcher';
 import { deleteNodes } from '../util/dom';
 import { ToolbarButton } from '../';
 
 export class LinkPlugin extends React.Component {
   static propTypes = {
-    execCommand: React.PropTypes.func,
+    editorState: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired,
     nodes: React.PropTypes.array,
   };
 
@@ -40,7 +42,13 @@ export class LinkPlugin extends React.Component {
       const link = find(['a'], this.props.nodes);
       link.attributes.href.value = this.state.url;
     } else {
-      this.props.execCommand('createLink', this.state.url);
+      const selection = this.props.editorState.getSelection();
+      if (selection.isCollapsed()) {
+        return;
+      }
+
+      const entityKey = Entity.create('LINK', 'MUTABLE', { url: this.state.url });
+      this.props.onChange(RichUtils.toggleLink(this.props.editorState, selection, entityKey));
     }
 
     this.closeModal();
@@ -56,7 +64,7 @@ export class LinkPlugin extends React.Component {
       <ToolbarButton
         icon="link"
         onClick={::this.openModal}
-        selectors={['a']}
+        selector="LINK"
         {...this.props}
       >
         <Modal

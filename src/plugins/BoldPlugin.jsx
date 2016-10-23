@@ -3,8 +3,8 @@ import { ToolbarButton } from '../';
 
 export const BoldPlugin = (props) => (
   <ToolbarButton
-    command="bold"
-    selectors={[{ tags: ['b', 'strong'] }]}
+    inlineStyle="bold"
+    selector="bold"
     icon="bold"
     {...props}
   />

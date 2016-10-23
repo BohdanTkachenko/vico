@@ -3,12 +3,11 @@ import { ToolbarPopupMenuButton, ColorPicker } from '../';
 
 export class FontHighlightColorPlugin extends React.Component {
   static propTypes = {
-    execCommand: React.PropTypes.func.isRequired,
     nodes: React.PropTypes.array.isRequired,
   };
 
   setColor(color) {
-    this.props.execCommand('backColor', color);
+    throw new Error(`Set backColor ${color} not implemented`);
   }
 
   render() {
